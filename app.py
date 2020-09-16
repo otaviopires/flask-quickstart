@@ -24,6 +24,7 @@ with app.test_request_context():
     print(url_for('login'))
     print(url_for('login', next='/'))
     print(url_for('profile', username='John Dean'))
+    url_for('static', filename='asdf.png')
 
 @app.route('/hello')
 def hello_world():
@@ -44,3 +45,4 @@ def show_post(post_id):
 @app.route('/path/<path:subpath>')
 def show_subpath(subpath):
     return 'Subpath %s ' % escape(subpath)
+
