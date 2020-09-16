@@ -1,5 +1,6 @@
 from flask import Flask, url_for
 from flask import request
+from flask import render_template
 from markupsafe import escape
 
 app = Flask(__name__)
@@ -27,8 +28,9 @@ with app.test_request_context():
     url_for('static', filename='asdf.png')
 
 @app.route('/hello')
-def hello_world():
-    return 'Hello, World!'
+@app.route('/hello/<name>')
+def hello(name=None):
+    return render_template('hello.html', name=name)
 
 @app.route('/projects/')
 def projects():
