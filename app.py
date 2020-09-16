@@ -1,4 +1,5 @@
 from flask import Flask, url_for
+from flask import request
 from markupsafe import escape
 
 app = Flask(__name__)
@@ -7,9 +8,12 @@ app = Flask(__name__)
 def index():
     return 'Index Page'
 
-@app.route('/login')
+@app.route('/login', methods=['GET', 'POST'])
 def login():
-    return 'login'
+    if request.method == 'POST':
+        return 'do_the_login()'
+    else:
+        return 'show_the_login_form()'
 
 @app.route('/user/<username>')
 def profile(username):
